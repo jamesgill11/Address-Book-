@@ -1,16 +1,7 @@
 import React, { Component } from "react";
-import styled from "styled-components";
-
-const Form = styled.form`
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-
-  .form {
-    width: 30%;
-    margin: 0 auto;
-  }
-`;
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
+import Button from "react-bootstrap/Button";
 
 class AddContact extends Component {
   state = {
@@ -29,7 +20,6 @@ class AddContact extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     this.props.onSubmit({
-      id: Math.random() * 1000,
       first_name: this.state.first_name,
       last_name: this.state.last_name,
       phone: this.state.phone,
@@ -45,43 +35,55 @@ class AddContact extends Component {
   render() {
     return (
       <Form>
-        <form className="form" onSubmit={this.handleSubmit}>
-          First Name:{" "}
-          <input
-            className="field"
-            name="first_name"
-            value={this.state.first_name}
-            onChange={this.handleChange}
-            placeholder="first name"
-          />
-          Last Name:{" "}
-          <input
-            className="field"
-            name="last_name"
-            value={this.state.last_name}
-            onChange={this.handleChange}
-            placeholder="last name"
-          />
-          <br />
-          Phone Num.:{" "}
-          <input
-            className="field"
-            name="phone"
-            value={this.state.phone}
-            onChange={this.handleChange}
-            placeholder="phone"
-          />
-          Email:{" "}
-          <input
-            className="field"
-            name="email"
-            value={this.state.email}
-            onChange={this.handleChange}
-            placeholder="email"
-          />
-          <hr />
-          <button onClick={this.handleSubmit}>Add Contact</button>
-        </form>
+        <Form.Row>
+          <Form.Group as={Col}>
+            <Form.Label>First Name</Form.Label>
+            <Form.Control
+              name="first_name"
+              type="text"
+              placeholder="First Name"
+              onChange={this.handleChange}
+              value={this.state.first_name}
+            />
+          </Form.Group>
+
+          <Form.Group as={Col}>
+            <Form.Label>Last Name</Form.Label>
+            <Form.Control
+              name="last_name"
+              type="text"
+              placeholder="Last Name"
+              onChange={this.handleChange}
+              value={this.state.last_name}
+            />
+          </Form.Group>
+        </Form.Row>
+        <Form.Row>
+          <Form.Group as={Col}>
+            <Form.Label>Phone</Form.Label>
+            <Form.Control
+              name="phone"
+              type="number"
+              placeholder="Phone"
+              onChange={this.handleChange}
+              value={this.state.phone}
+            />
+          </Form.Group>
+
+          <Form.Group as={Col}>
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              name="email"
+              type="email"
+              placeholder="Email"
+              onChange={this.handleChange}
+              value={this.state.email}
+            />
+          </Form.Group>
+        </Form.Row>
+        <Button variant="dark" type="submit" onClick={this.handleSubmit}>
+          Submit
+        </Button>
       </Form>
     );
   }

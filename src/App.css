@@ -1,0 +1,12 @@
+.App {
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: black;
+}
+
+.center {
+  text-align: center;
+}
